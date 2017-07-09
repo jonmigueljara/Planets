@@ -56,18 +56,56 @@ public class Planet {
 	double calcNetForceExertedByX(Planet[] planets) {
 		/* F_x = F *(dx/r) */
 
-		double total, dx, f_x;
-		for (int i;	i < planets.length; i++) {
-			dx = this.xxPos - planet[i].xxPos;
-			f_x = (calcForceExertedBy(planet[i]) * dx) / calcDistance(planets[i]);
-			total += planets[i];
+		double total = 0;
+		double f_x, dx;
+
+		for (int i = 0; i < planets.length; i++) {
+			// check the planet is looking at itself
+			if (planets[i].equals(this)) {
+				total = total;
+			} else {
+				dx = planets[i].xxPos - this.xxPos;
+				f_x = (calcForceExertedBy(planets[i]) * dx) / calcDistance(planets[i]);
+				total = total + f_x;
+			}
 		}
 
 		return(total);
 	}
 
 	double calcNetForceExertedByY(Planet[] planets) {
+
+		double total = 0;
+		double dy, f_y;
+
+		for (int i = 0;	i < planets.length; i++) {
+			// check the planet is looking at itself
+			if (planets[i].equals(this)) {
+				total = total;
+			} else {
+				dy = planets[i].yyPos - this.yyPos ;
+				f_y = (calcForceExertedBy(planets[i]) * dy) / calcDistance(planets[i]);
+				total = total + f_y;
+			}
+		}
+
+		return(total);
 		
+	}
+
+	void update(double dt, double fx, double fy)  {
+		double vxUpate; 
+		double vyUpdate;
+		double aX = fx/this.mass;
+		double ay = fy/this.mass;
+
+		vxUpate = this.xxVel + aX * dt;
+		vxUpate = this.yyVel + aY * dt;
+
+		this.xxVel = vxUpate;
+		this.yyVel = vyUpdate;
+
+
 	}
 
 
