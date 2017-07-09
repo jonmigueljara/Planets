@@ -97,14 +97,17 @@ public class Planet {
 		double vxUpate; 
 		double vyUpdate;
 		double aX = fx/this.mass;
-		double ay = fy/this.mass;
+		double aY = fy/this.mass;
 
+		/* update  the x and y velocity of the planet */
 		vxUpate = this.xxVel + aX * dt;
-		vxUpate = this.yyVel + aY * dt;
-
+		vyUpdate = this.yyVel + aY * dt;
 		this.xxVel = vxUpate;
 		this.yyVel = vyUpdate;
 
+		/*update the position of the planet */
+		this.xxPos = this.xxPos + dt * this.xxVel;
+		this.yyPos = this.yyPos + dt * this.yyVel;
 
 	}
 
