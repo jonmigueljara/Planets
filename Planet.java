@@ -111,6 +111,11 @@ public class Planet {
 
 	}
 
+	void draw() {
+		String imgLocation = "./images/" + imgFileName;
+		StdDraw.picture(this.xxPos, this.yyPos, imgLocation);
+	}
+
 
 }
 
